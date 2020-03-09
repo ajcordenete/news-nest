@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">@color/flat_red</color>
+    <color name="colorPrimaryDark">@color/flat_dark_red</color>
+    <color name="colorAccent">@color/flat_light_red</color>
+
+    <color name="white">#ffffff</color>
+    <color name="black">#000000</color>
+
+    <color name="darker_grey">#212121</color>
+    <color name="dark_grey">#303030</color>
+    <color name="grey">#424242</color>
+
+    <color name="flat_light_red">#EE4540</color>
+    <color name="flat_red">#C72C41</color>
+    <color name="flat_dark_red">#801336</color>
+    <color name="flat_darker_red">#510A32</color>
+    <color name="flat_dark">#2D142C</color>
+</resources>

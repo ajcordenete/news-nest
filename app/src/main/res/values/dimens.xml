@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="corner_radius_small">4dp</dimen>
+
+    <dimen name="material_dimen_xsmall">4dp</dimen>
+    <dimen name="material_dimen_small">8dp</dimen>
+    <dimen name="material_dimen_normal">16dp</dimen>
+    <dimen name="material_dimen_xlarge">32dp</dimen>
+    <dimen name="material_dimen_xxsmall">2dp</dimen>
+</resources>

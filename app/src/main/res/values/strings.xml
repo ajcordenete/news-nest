@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">News Nest</string>
+    <string name="failed_refresh">Could not refresh feed</string>
+    <string name="success_refresh">Feed updated</string>
+    <string name="news_feed">Newsfeed</string>
+
+    <!--Placeholder strings-->
+    <string name="placeholder_title">Placeholder title</string>
+    <string name="placeholder_long_title">This is a very long title- Lorem ipsum insolis garela and additional lines added</string>
+    <string name="placeholder_description">Placeholder description</string>
+    <string name="search_hint">Search News</string>
+</resources>

@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="article"
+            type="com.aljon.newsnest.model.Article" />
+    </data>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="@dimen/material_dimen_xxsmall"
+        app:cardBackgroundColor="@color/darker_grey"
+        android:layout_margin="@dimen/material_dimen_xsmall">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/news_image"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintDimensionRatio="1:1"
+                app:imageUrl="@{ article.urlToImage }"
+                tools:src="@tools:sample/backgrounds/scenic"/>
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_constraintTop_toTopOf="@id/news_image"
+                app:layout_constraintLeft_toLeftOf="@id/news_image"
+                app:layout_constraintRight_toRightOf="@id/news_image"
+                app:layout_constraintBottom_toBottomOf="@id/news_image"
+                android:background="@color/black"
+                android:alpha="0.2"/>
+
+            <TextView
+                android:id="@+id/title_text"
+                style="@style/TextAppearance.MaterialComponents.Body1"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="@dimen/material_dimen_normal"
+                android:layout_marginEnd="@dimen/material_dimen_small"
+                android:layout_marginBottom="@dimen/material_dimen_xsmall"
+                android:fontFamily="@font/roboto"
+                android:text="@{ article.title }"
+                android:textStyle="bold"
+                app:autoSizeTextType="uniform"
+                android:ellipsize="end"
+                app:layout_constraintBottom_toTopOf="@+id/source_text"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintWidth_percent="0.7"
+                android:maxLines="3"
+                tools:text="@string/placeholder_long_title" />
+
+            <TextView
+                android:id="@+id/source_text"
+                style="@style/TextAppearance.MaterialComponents.Caption"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginStart="@dimen/material_dimen_normal"
+                android:layout_marginBottom="@dimen/material_dimen_xsmall"
+                android:fontFamily="@font/roboto"
+                android:textStyle="bold"
+                android:text="@{ article.sourceName }"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toTopOf="@+id/date_text"
+                app:autoSizeTextType="uniform"
+                android:textColor="@color/white"
+                tools:text="@string/placeholder_description" />
+
+            <TextView
+                android:id="@+id/date_text"
+                style="@style/TextAppearance.MaterialComponents.Caption"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginStart="@dimen/material_dimen_normal"
+                android:layout_marginBottom="@dimen/material_dimen_normal"
+                android:fontFamily="@font/roboto"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toBottomOf="@+id/news_image"
+                app:layout_constraintWidth_percent="0.3"
+                app:date="@{ article.datePublished }"
+                app:autoSizeTextType="uniform"
+                tools:text="1d ago" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </androidx.cardview.widget.CardView>
+
+
+
+
+</layout>

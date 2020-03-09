@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="article"
+            type="com.aljon.newsnest.model.Article" />
+    </data>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardBackgroundColor="@color/darker_grey"
+        app:cardCornerRadius="@dimen/material_dimen_xxsmall"
+        android:layout_margin="@dimen/material_dimen_xsmall">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="@dimen/material_dimen_normal"
+            android:paddingStart="@dimen/material_dimen_normal"
+            android:paddingEnd="@dimen/material_dimen_normal"
+            android:paddingBottom="@dimen/material_dimen_small">
+
+            <TextView
+                android:id="@+id/source_text"
+                style="@style/TextAppearance.MaterialComponents.Caption"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:fontFamily="@font/roboto"
+                android:text="@{ article.sourceName }"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:textColor="@color/colorAccent"
+                android:textSize="10sp"
+                tools:text="@string/placeholder_description" />
+
+            <ImageView
+                android:id="@+id/news_image"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:imageUrl="@{ article.urlToImage }"
+                tools:src="@tools:sample/backgrounds/scenic"/>
+
+            <TextView
+                android:id="@+id/title_text"
+                style="@style/TextAppearance.MaterialComponents.Headline6"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:fontFamily="@font/roboto"
+                android:text="@{ article.title }"
+                app:autoSizeTextType="uniform"
+                android:ellipsize="end"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/source_text"
+                app:layout_constraintEnd_toStartOf="@+id/news_image"
+                android:layout_marginEnd="@dimen/material_dimen_normal"
+                android:layout_marginTop="@dimen/material_dimen_normal"
+                android:maxLines="3"
+                tools:text="@string/placeholder_long_title" />
+
+            <TextView
+                android:id="@+id/date_text"
+                style="@style/TextAppearance.MaterialComponents.Caption"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:fontFamily="@font/roboto"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/title_text"
+                android:layout_marginTop="@dimen/material_dimen_small"
+                android:layout_marginBottom="@dimen/material_dimen_small"
+                app:date="@{ article.datePublished }"
+                app:autoSizeTextType="uniform"
+                tools:text="1d ago" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </androidx.cardview.widget.CardView>
+</layout>
