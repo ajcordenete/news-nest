@@ -64,19 +64,10 @@ class NewsFragment: Fragment() {
      * and assign it to the binding
      */
     private fun initAdapter() {
-        val span_count = 1
-        var gridLayoutManager = GridLayoutManager(context, span_count)
-        gridLayoutManager.spanSizeLookup = object: GridLayoutManager.SpanSizeLookup() {
-            override fun getSpanSize(position: Int): Int {
-                return if (position === 0) 1 else 1
-            }
-        }
-
         var adapter = NewsAdapter(NewsAdapter.OnItemSelectListener {
             viewModel.navigateToNewsDetail(it)
         })
 
-        binding.newsList.layoutManager = gridLayoutManager
         binding.newsList.adapter = adapter
     }
 
