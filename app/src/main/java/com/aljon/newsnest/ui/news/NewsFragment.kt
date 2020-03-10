@@ -1,7 +1,9 @@
 package com.aljon.newsnest.ui.news
 
 import android.os.Bundle
-import android.view.*
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -11,6 +13,9 @@ import com.aljon.newsnest.databinding.NewsFragmentBinding
 import com.aljon.newsnest.networking.ApiStatus
 import com.aljon.newsnest.ui.MainContainerFragmentDirections
 import com.google.android.material.snackbar.Snackbar
+import kotlinx.android.synthetic.*
+import kotlinx.android.synthetic.main.news_fragment.*
+
 
 const val CATEGORY_KEY = "category_key"
 
@@ -30,23 +35,25 @@ class NewsFragment: Fragment() {
             .get(NewsViewModel::class.java)
     }
 
-    private lateinit var binding: NewsFragmentBinding
-
 
     override fun onCreateView(inflater: LayoutInflater,
                               container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
 
-        binding = NewsFragmentBinding.inflate(inflater, container, false)
+        val binding = NewsFragmentBinding.inflate(inflater, container, false)
         binding.setLifecycleOwner(this)
         binding.viewModel = viewModel
+
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
         initAdapter()
         initSwipeRefresh()
         observeNavigateToArticleDetail()
         observeRequestStatus()
-
-        return binding.root
     }
 
     /**
@@ -58,7 +65,7 @@ class NewsFragment: Fragment() {
             viewModel.navigateToNewsDetail(it)
         })
 
-        binding.newsList.adapter = adapter
+        news_list.adapter = adapter
     }
 
     private fun observeRequestStatus() {
@@ -90,12 +97,17 @@ class NewsFragment: Fragment() {
     }
 
     private fun initSwipeRefresh() {
-        binding.refreshLayout.setOnRefreshListener {
+        refresh_layout.setOnRefreshListener {
             viewModel.getNews()
         }
     }
 
     private fun completeRefresh() {
-        binding.refreshLayout.isRefreshing = false
+        refresh_layout.isRefreshing = false
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        this.clearFindViewByIdCache()
     }
 }

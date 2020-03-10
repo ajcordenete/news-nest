@@ -14,30 +14,36 @@ import com.aljon.newsnest.databinding.SearchFragmentBinding
 import com.aljon.newsnest.networking.ApiStatus
 import com.aljon.newsnest.ui.news.NewsAdapter
 import com.aljon.newsnest.ui.news.NewsViewModel
+import com.aljon.newsnest.utils.Constants
+import kotlinx.android.synthetic.*
+import kotlinx.android.synthetic.main.news_fragment.*
 
 class SearchFragment : Fragment() {
 
     private lateinit var viewModel: NewsViewModel
-    private lateinit var binding: SearchFragmentBinding
 
     override fun onCreateView(inflater: LayoutInflater,
                               container: ViewGroup?,
                               savedInstanceState: Bundle? ): View? {
 
-        viewModel = ViewModelProvider(this, NewsViewModel.Factory(""))
+        viewModel = ViewModelProvider(this, NewsViewModel.Factory(Constants.SEARCH))
             .get(NewsViewModel::class.java)
 
-        binding = SearchFragmentBinding.inflate(inflater, container, false)
+        val binding = SearchFragmentBinding.inflate(inflater, container, false)
         binding.lifecycleOwner = this
 
         binding.viewModel = viewModel
 
+        setHasOptionsMenu(true)
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
         initAdapter()
         observeRequestStatus()
         observeNavigateToArticleDetail()
-
-        setHasOptionsMenu(true)
-        return binding.root
     }
 
     /**
@@ -49,7 +55,7 @@ class SearchFragment : Fragment() {
             viewModel.navigateToNewsDetail(it)
         })
 
-        binding.newsList.adapter = adapter
+        news_list.adapter = adapter
     }
 
     private fun observeRequestStatus() {
@@ -104,4 +110,10 @@ class SearchFragment : Fragment() {
             }
         }
     }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        this.clearFindViewByIdCache()
+    }
+
 }

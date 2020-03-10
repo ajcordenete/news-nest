@@ -10,6 +10,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
+import timber.log.Timber
 import java.lang.IllegalArgumentException
 import kotlin.reflect.jvm.internal.impl.load.java.Constant
 
@@ -40,12 +41,16 @@ class NewsViewModel(val category: String): ViewModel() {
         // Don't perform init of news when searching...
         if(category != Constants.SEARCH)
             getNews()
+
+        Timber.i("NewsModelInit!")
     }
 
     /**
      * Get request for top headlines using the category
      */
     fun getNews() {
+        Timber.i("getting news")
+
         coroutineScope.launch {
             try {
                 _apiStatus.value = ApiStatus.LOADING
@@ -65,6 +70,8 @@ class NewsViewModel(val category: String): ViewModel() {
     }
 
     fun searchNews(keyword: String) {
+        Timber.i("searching news about: $keyword!")
+
         query = keyword
         coroutineScope.launch {
             try {

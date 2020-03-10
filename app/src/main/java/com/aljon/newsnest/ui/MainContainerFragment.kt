@@ -8,16 +8,14 @@ import com.aljon.newsnest.R
 import com.aljon.newsnest.databinding.MainContainerFragmentBinding
 import com.aljon.newsnest.ui.news.NewsFragmentAdapter
 import com.google.android.material.tabs.TabLayoutMediator
+import kotlinx.android.synthetic.main.main_container_fragment.*
 
 class MainContainerFragment: Fragment() {
-
-    private lateinit var binding: MainContainerFragmentBinding
 
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle? ): View? {
 
-        binding = MainContainerFragmentBinding.inflate(inflater, container, false)
-
+        val binding = MainContainerFragmentBinding.inflate(inflater, container, false)
         setHasOptionsMenu(true)
 
         return binding.root
@@ -25,12 +23,11 @@ class MainContainerFragment: Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         val adapter = NewsFragmentAdapter(this)
-        binding.pager.adapter = adapter
+        pager.adapter = adapter
 
-        binding.pager.isUserInputEnabled = false
-        binding.pager.offscreenPageLimit = 2
+        pager.isUserInputEnabled = false
 
-        TabLayoutMediator(binding.tabLayout, binding.pager) { tab, position ->
+        TabLayoutMediator(tab_layout, pager) { tab, position ->
             tab.text = adapter.CATEGORIES[position]
         }.attach()
     }

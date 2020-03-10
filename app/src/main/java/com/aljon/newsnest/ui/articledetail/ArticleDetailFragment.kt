@@ -11,10 +11,10 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.aljon.newsnest.databinding.ArticleDetailFragmentBinding
 import com.aljon.newsnest.utils.hasNetworkAvailable
+import kotlinx.android.synthetic.*
+import kotlinx.android.synthetic.main.article_detail_fragment.*
 
 class ArticleDetailFragment: Fragment() {
-
-    private lateinit var binding: ArticleDetailFragmentBinding
 
     private val viewModel: ArticleDetailViewModel by lazy {
         var url = ArticleDetailFragmentArgs.fromBundle(arguments!!).url
@@ -26,12 +26,15 @@ class ArticleDetailFragment: Fragment() {
                               container: ViewGroup?,
                               savedInstanceState: Bundle? ): View? {
 
-        binding = ArticleDetailFragmentBinding.inflate(inflater, container, false)
+        val binding = ArticleDetailFragmentBinding.inflate(inflater, container, false)
         binding.viewModel = viewModel
 
-        observeWebUrl()
-
         return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        observeWebUrl()
     }
 
     fun observeWebUrl() {
@@ -45,7 +48,7 @@ class ArticleDetailFragment: Fragment() {
      *  @param url: Url to of the news page to be loaded
      */
     fun loadWebUrl(url: String) {
-        binding.webView.apply {
+        webView.apply {
             setScrollBarStyle(View.SCROLLBARS_INSIDE_OVERLAY);
             getSettings().setLoadsImagesAutomatically(true);
             getSettings().setJavaScriptEnabled(true);
@@ -62,6 +65,11 @@ class ArticleDetailFragment: Fragment() {
             webViewClient = WebViewClient()
             loadUrl(url);
         }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        this.clearFindViewByIdCache()
     }
 
     /**
