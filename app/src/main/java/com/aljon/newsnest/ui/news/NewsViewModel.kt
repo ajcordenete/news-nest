@@ -5,14 +5,21 @@ import com.aljon.newsnest.model.Article
 import com.aljon.newsnest.model.asDomainModel
 import com.aljon.newsnest.networking.ApiStatus
 import com.aljon.newsnest.networking.NewsApi
+import com.aljon.newsnest.utils.Constants
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 import java.lang.IllegalArgumentException
+import kotlin.reflect.jvm.internal.impl.load.java.Constant
 
-
-
+/**
+ * ViewModel implementation for News
+ * This is being reused for all fragment
+ * that displays list of articles
+ *
+ *@param: category - category for request. Request will default to all if this is empty
+ */
 class NewsViewModel(val category: String): ViewModel() {
 
     private val viewModelJob = Job()
@@ -30,9 +37,14 @@ class NewsViewModel(val category: String): ViewModel() {
     var query: String = ""
 
     init {
-        getNews()
+        // Don't perform init of news when searching...
+        if(category != Constants.SEARCH)
+            getNews()
     }
 
+    /**
+     * Get request for top headlines using the category
+     */
     fun getNews() {
         coroutineScope.launch {
             try {
