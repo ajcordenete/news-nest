@@ -18,19 +18,25 @@ import com.aljon.newsnest.databinding.NewsFragmentBinding
 import com.aljon.newsnest.networking.ApiStatus
 import com.google.android.material.snackbar.Snackbar
 
+const val CATEGORY_KEY = "category_key"
 
 class NewsFragment: Fragment() {
 
     /**
      * One way to delay creation of the viewModel until an appropriate lifecycle method is to use
-     * lazy. This requires that viewModel not be referenced before onActivityCreated, which we
-     * do in this Fragment.
+     * lazy. This requires that viewModel not be referenced before onActivityCreated.
+     * This ensures that activity is not null when we initialize the fragment.
+     * Application from the activity is needed in this viewModel
      */
     private val viewModel: NewsViewModel by lazy {
         val activity = requireNotNull(this.activity) {
             "You can only access the viewModel after onActivityCreated()"
         }
-        ViewModelProvider(this, NewsViewModel.Factory(activity.application))
+        // Get the category that is passed from the bundle
+        // returns an empty string if no arguments found
+        var category = arguments?.getString(CATEGORY_KEY) ?: ""
+
+        ViewModelProvider(this, NewsViewModel.Factory(activity.application, category))
             .get(NewsViewModel::class.java)
     }
 
@@ -49,7 +55,6 @@ class NewsFragment: Fragment() {
         initSwipeRefresh()
         observeNavigateToArticleDetail()
         observeRequestStatus()
-        setHasOptionsMenu(true)
 
         return binding.root
     }
@@ -66,7 +71,6 @@ class NewsFragment: Fragment() {
                 return if (position === 0) 1 else 1
             }
         }
-
 
         var adapter = NewsAdapter(NewsAdapter.OnItemSelectListener {
             viewModel.navigateToNewsDetail(it)
@@ -99,7 +103,7 @@ class NewsFragment: Fragment() {
     private fun observeNavigateToArticleDetail() {
         viewModel.navigateToArticleDetail.observe(viewLifecycleOwner, Observer {
             it?.let {
-                this.findNavController().navigate(NewsFragmentDirections.actionNewsFragmentToArticleDetailFragment(it))
+                this.findNavController().navigate(MainContainerFragmentDirections.actionMainContainerFragmentToArticleDetailFragment(it))
                 viewModel.doneNavigatingToNewsDetail()
             }
         })
@@ -113,21 +117,5 @@ class NewsFragment: Fragment() {
 
     private fun completeRefresh() {
         binding.refreshLayout.isRefreshing = false
-    }
-
-    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        inflater.inflate(R.menu.news_menu, menu)
-        super.onCreateOptionsMenu(menu, inflater)
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when(item?.itemId) {
-            R.id.search -> navigateToSearch()
-        }
-       return true
-    }
-
-    private fun navigateToSearch() {
-        this.findNavController().navigate(NewsFragmentDirections.actionNewsFragmentToSearchFragment())
     }
 }

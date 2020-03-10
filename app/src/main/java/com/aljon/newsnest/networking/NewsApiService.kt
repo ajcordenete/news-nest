@@ -10,6 +10,8 @@ interface NewsApiService {
 
     @GET("top-headlines")
     suspend fun getNews(@Query("country") country: String = Constants.COUNTRY,
+                        @Query("category") category: String = "",
+                        @Query("pageSize") size: Int = 10,
                         @Query("apiKey") key: String = Constants.API_KEY) : Response<NewsResponse>
 
     @GET("everything")

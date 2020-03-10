@@ -1,18 +1,33 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.MaterialComponents.Bridge">
+    <style name="AppTheme" parent="Base.Theme.MaterialComponents">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/colorPrimary</item>
+        <!--<item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorAccent">@color/colorAccent</item>-->
+
         <item name="fontFamily">@font/roboto</item>
         <item name="android:fontFamily">@font/roboto</item>
-        <item name="colorSurface">@color/white</item>
-        <item name="colorOnSurface">@color/black</item>
-       <!-- <item name="android:windowBackground">@color/black</item>-->
+
         <!--<item name="android:statusBarColor">@color/black</item>-->
-        <!--<item name="title">" "</item>-->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryVariant">@color/colorPrimaryVariant</item>
+        <item name="colorSecondary">@color/colorSecondary</item>
+        <item name="background">@color/background</item>
+        <item name="colorSurface">@color/colorSurface</item>
+        <item name="colorError">@color/colorError</item>
+        <item name="colorOnPrimary">@color/colorOnPrimary</item>
+        <item name="colorOnSecondary">@color/colorOnSecondary</item>
+        <item name="colorOnBackground">@color/colorOnBackground</item>
+        <item name="colorOnSurface">@color/colorOnSurface</item>
+        <item name="colorOnError">@color/colorOnError</item>
+        <item name="android:colorBackground">@color/black</item>
+    </style>
+
+    <style name="TabLayoutTextStyle" parent="Widget.MaterialComponents.TabLayout">
+        <item name="tabSelectedTextColor">@color/white</item>
+        <item name="tabMinWidth">@dimen/tab_minimum_width</item>
     </style>
 
 </resources>

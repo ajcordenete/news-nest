@@ -7,4 +7,5 @@
     <dimen name="material_dimen_normal">16dp</dimen>
     <dimen name="material_dimen_xlarge">32dp</dimen>
     <dimen name="material_dimen_xxsmall">2dp</dimen>
+    <dimen name="tab_minimum_width">150dp</dimen>
 </resources>

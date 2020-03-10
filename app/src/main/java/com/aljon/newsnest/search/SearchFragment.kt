@@ -16,7 +16,6 @@ import com.aljon.newsnest.R
 import com.aljon.newsnest.databinding.SearchFragmentBinding
 import com.aljon.newsnest.networking.ApiStatus
 import com.aljon.newsnest.news.NewsAdapter
-import com.aljon.newsnest.news.NewsFragmentDirections
 import kotlinx.android.synthetic.main.toolbar.*
 import timber.log.Timber
 
@@ -42,10 +41,6 @@ class SearchFragment : Fragment() {
 
         setHasOptionsMenu(true)
         return binding.root
-    }
-
-    private fun removeTitle() {
-        activity?.title = ""
     }
 
     /**
@@ -82,9 +77,6 @@ class SearchFragment : Fragment() {
         inflater?.inflate(R.menu.search_menu, menu)
         val searchItem = menu?.findItem(R.id.search)
         initSearchViewFromMenu(searchItem)
-
-        Timber.i("onCreateOptionsMenu!! query = ${viewModel.query}")
-
 
         super.onCreateOptionsMenu(menu, inflater)
     }

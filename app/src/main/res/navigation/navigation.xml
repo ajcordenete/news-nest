@@ -3,20 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/navigation"
-    app:startDestination="@id/newsFragment">
+    app:startDestination="@id/mainContainerFragment">
 
-    <fragment
-        android:id="@+id/newsFragment"
-        android:name="com.aljon.newsnest.news.NewsFragment"
-        android:label="@string/news_feed"
-        tools:layout="@layout/news_fragment">
-        <action
-            android:id="@+id/action_newsFragment_to_articleDetailFragment"
-            app:destination="@id/articleDetailFragment" />
-        <action
-            android:id="@+id/action_newsFragment_to_searchFragment"
-            app:destination="@id/searchFragment" />
-    </fragment>
     <fragment
         android:id="@+id/articleDetailFragment"
         android:name="com.aljon.newsnest.articledetail.ArticleDetailFragment"
@@ -33,6 +21,18 @@
         tools:layout="@layout/search_fragment">
         <action
             android:id="@+id/action_searchFragment_to_articleDetailFragment"
+            app:destination="@id/articleDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/mainContainerFragment"
+        android:name="com.aljon.newsnest.news.MainContainerFragment"
+        android:label="@string/news_feed"
+        tools:layout="@layout/main_container_fragment">
+        <action
+            android:id="@+id/action_mainContainerFragment_to_searchFragment"
+            app:destination="@id/searchFragment" />
+        <action
+            android:id="@+id/action_mainContainerFragment_to_articleDetailFragment"
             app:destination="@id/articleDetailFragment" />
     </fragment>
 </navigation>
