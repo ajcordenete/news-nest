@@ -7,7 +7,7 @@
     <data>
         <variable
             name="viewModel"
-            type="com.aljon.newsnest.search.SearchViewModel" />
+            type="com.aljon.newsnest.ui.news.NewsViewModel" />
     </data>
 
     <androidx.recyclerview.widget.RecyclerView
@@ -22,7 +22,7 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0"
-        app:submit="@{ viewModel.searchResults }"
+        app:submit="@{ viewModel.articles }"
         tools:itemCount="16"
         tools:listitem="@layout/list_search_item" />
 

@@ -7,7 +7,7 @@
     <data>
         <variable
             name="viewModel"
-            type="com.aljon.newsnest.articledetail.ArticleDetailViewModel" />
+            type="com.aljon.newsnest.ui.articledetail.ArticleDetailViewModel" />
 
     </data>
 

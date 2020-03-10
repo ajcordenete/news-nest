@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/articleDetailFragment"
-        android:name="com.aljon.newsnest.articledetail.ArticleDetailFragment"
+        android:name="com.aljon.newsnest.ui.articledetail.ArticleDetailFragment"
         android:label=" "
         tools:layout="@layout/article_detail_fragment">
         <argument
@@ -16,7 +16,7 @@
     </fragment>
     <fragment
         android:id="@+id/searchFragment"
-        android:name="com.aljon.newsnest.search.SearchFragment"
+        android:name="com.aljon.newsnest.ui.search.SearchFragment"
         android:label=" "
         tools:layout="@layout/search_fragment">
         <action
@@ -25,7 +25,7 @@
     </fragment>
     <fragment
         android:id="@+id/mainContainerFragment"
-        android:name="com.aljon.newsnest.news.MainContainerFragment"
+        android:name="com.aljon.newsnest.ui.MainContainerFragment"
         android:label="@string/news_feed"
         tools:layout="@layout/main_container_fragment">
         <action
