@@ -1,11 +1,10 @@
-package com.aljon.newsnest.news
+package com.aljon.newsnest.ui.news
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.aljon.newsnest.R
 import com.aljon.newsnest.model.Article
 import com.aljon.newsnest.databinding.ListArticleItemBinding
 import com.aljon.newsnest.databinding.ListSearchItemBinding
@@ -16,7 +15,7 @@ private const val ITEM_VIEW_TYPE_ITEM = 1
 class NewsAdapter(val onItemSelectListener: OnItemSelectListener): ListAdapter<Article, RecyclerView.ViewHolder>(NewsDiffUtil) {
 
     override fun getItemViewType(position: Int): Int {
-        return if(position == 0) ITEM_VIEW_TYPE_HEADER else 1
+        return if(position == 0) ITEM_VIEW_TYPE_HEADER else ITEM_VIEW_TYPE_ITEM
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {

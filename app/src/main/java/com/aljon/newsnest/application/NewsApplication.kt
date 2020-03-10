@@ -1,4 +1,4 @@
-package com.aljon.newsnest
+package com.aljon.newsnest.application
 
 import android.app.Application
 import com.jakewharton.threetenabp.AndroidThreeTen

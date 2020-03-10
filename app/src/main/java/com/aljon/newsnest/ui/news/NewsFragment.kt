@@ -1,21 +1,15 @@
-package com.aljon.newsnest.news
+package com.aljon.newsnest.ui.news
 
-import android.app.SearchManager
-import android.content.Context
 import android.os.Bundle
 import android.view.*
-import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.SearchView
-import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.GridLayoutManager
 import com.aljon.newsnest.R
 import com.aljon.newsnest.databinding.NewsFragmentBinding
 import com.aljon.newsnest.networking.ApiStatus
+import com.aljon.newsnest.ui.MainContainerFragmentDirections
 import com.google.android.material.snackbar.Snackbar
 
 const val CATEGORY_KEY = "category_key"
@@ -26,17 +20,13 @@ class NewsFragment: Fragment() {
      * One way to delay creation of the viewModel until an appropriate lifecycle method is to use
      * lazy. This requires that viewModel not be referenced before onActivityCreated.
      * This ensures that activity is not null when we initialize the fragment.
-     * Application from the activity is needed in this viewModel
      */
     private val viewModel: NewsViewModel by lazy {
-        val activity = requireNotNull(this.activity) {
-            "You can only access the viewModel after onActivityCreated()"
-        }
         // Get the category that is passed from the bundle
         // returns an empty string if no arguments found
         var category = arguments?.getString(CATEGORY_KEY) ?: ""
 
-        ViewModelProvider(this, NewsViewModel.Factory(activity.application, category))
+        ViewModelProvider(this, NewsViewModel.Factory(category))
             .get(NewsViewModel::class.java)
     }
 
@@ -75,7 +65,6 @@ class NewsFragment: Fragment() {
         viewModel.apiStatus.observe(viewLifecycleOwner, Observer {
             when(it) {
                 ApiStatus.SUCCESS ->   {
-                    showSnackBar(R.string.success_refresh)
                     completeRefresh()
                 }
                 ApiStatus.FAILED -> {

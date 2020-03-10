@@ -1,4 +1,4 @@
-package com.aljon.newsnest.news
+package com.aljon.newsnest.ui
 
 import android.os.Bundle
 import android.view.*
@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.aljon.newsnest.R
 import com.aljon.newsnest.databinding.MainContainerFragmentBinding
+import com.aljon.newsnest.ui.news.NewsFragmentAdapter
 import com.google.android.material.tabs.TabLayoutMediator
 
 class MainContainerFragment: Fragment() {

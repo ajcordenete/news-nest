@@ -1,4 +1,4 @@
-package com.aljon.newsnest.articledetail
+package com.aljon.newsnest.ui.articledetail
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider

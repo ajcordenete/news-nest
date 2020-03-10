@@ -1,9 +1,10 @@
-package com.aljon.newsnest
+package com.aljon.newsnest.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.navigation.findNavController
 import androidx.navigation.ui.NavigationUI
+import com.aljon.newsnest.R
 
 class MainActivity : AppCompatActivity() {
 

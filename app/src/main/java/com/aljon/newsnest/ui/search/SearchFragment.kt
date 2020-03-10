@@ -1,34 +1,31 @@
-package com.aljon.newsnest.search
+package com.aljon.newsnest.ui.search
 
 import android.app.SearchManager
 import android.content.Context
 import android.os.Bundle
 import android.view.*
-import android.widget.Toast
 import androidx.appcompat.widget.SearchView
-import androidx.core.content.ContextCompat.getSystemService
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.GridLayoutManager
 import com.aljon.newsnest.R
 import com.aljon.newsnest.databinding.SearchFragmentBinding
 import com.aljon.newsnest.networking.ApiStatus
-import com.aljon.newsnest.news.NewsAdapter
-import kotlinx.android.synthetic.main.toolbar.*
-import timber.log.Timber
+import com.aljon.newsnest.ui.news.NewsAdapter
+import com.aljon.newsnest.ui.news.NewsViewModel
 
 class SearchFragment : Fragment() {
 
-    private lateinit var viewModel: SearchViewModel
+    private lateinit var viewModel: NewsViewModel
     private lateinit var binding: SearchFragmentBinding
 
     override fun onCreateView(inflater: LayoutInflater,
                               container: ViewGroup?,
                               savedInstanceState: Bundle? ): View? {
 
-        viewModel = ViewModelProvider(this).get(SearchViewModel::class.java)
+        viewModel = ViewModelProvider(this, NewsViewModel.Factory(""))
+            .get(NewsViewModel::class.java)
 
         binding = SearchFragmentBinding.inflate(inflater, container, false)
         binding.lifecycleOwner = this
@@ -49,14 +46,14 @@ class SearchFragment : Fragment() {
      */
     private fun initAdapter() {
         var adapter = NewsAdapter(NewsAdapter.OnItemSelectListener {
-            viewModel.navigateToArticleDetail(it)
+            viewModel.navigateToNewsDetail(it)
         })
 
         binding.newsList.adapter = adapter
     }
 
     private fun observeRequestStatus() {
-        viewModel.searchStatus.observe(viewLifecycleOwner, Observer {
+        viewModel.apiStatus.observe(viewLifecycleOwner, Observer {
             when(it) {
                 ApiStatus.DONE ->   {}
                 ApiStatus.FAILED -> {}

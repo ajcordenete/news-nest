@@ -1,4 +1,4 @@
-package com.aljon.newsnest.news
+package com.aljon.newsnest.ui.news
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
