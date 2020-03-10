@@ -46,9 +46,9 @@
 
             <TextView
                 android:id="@+id/title_text"
-                style="@style/TextAppearance.MaterialComponents.Body1"
+                style="@style/TextAppearance.MaterialComponents.Headline6"
                 android:layout_width="0dp"
-                android:layout_height="50dp"
+                android:layout_height="@dimen/article_title_height"
                 android:layout_marginStart="@dimen/material_dimen_normal"
                 android:layout_marginEnd="@dimen/material_dimen_small"
                 android:layout_marginBottom="@dimen/material_dimen_xsmall"
@@ -59,9 +59,10 @@
                 android:ellipsize="end"
                 app:layout_constraintBottom_toTopOf="@+id/source_text"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintWidth_percent="0.7"
+                app:layout_constraintWidth_percent="0.9"
                 android:maxLines="3"
-                tools:text="@string/placeholder_long_title" />
+                tools:text="@string/placeholder_long_title"
+                android:textAppearance="@style/TextShadowStyle"/>
 
             <TextView
                 android:id="@+id/source_text"

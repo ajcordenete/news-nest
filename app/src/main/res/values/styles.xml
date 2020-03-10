@@ -30,4 +30,12 @@
         <item name="tabMinWidth">@dimen/tab_minimum_width</item>
     </style>
 
+    <style name="TextShadowStyle">
+        <item name="android:shadowColor">@color/grey</item>
+        <item name="android:shadowRadius">0.5</item>
+        <item name="android:shadowDx">5</item>
+        <item name="android:shadowDy">5</item>
+
+    </style>
+
 </resources>
