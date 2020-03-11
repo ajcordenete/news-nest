@@ -13,3 +13,4 @@
 .externalNativeBuild
 .cxx
 api-key.properties
+*.hprof
