@@ -22,5 +22,6 @@ Another goal of the project is to demonstrate best practices, provide a set of g
 - [Retrofit](https://square.github.io/retrofit/) - networking
 - [Android Jetpack](https://developer.android.com/jetpack) - Navigation, ViewModel, LifeCycle, LiveData
 - [Kotlin Coroutines](https://kotlinlang.org/docs/reference/coroutines-overview.html) - for background processing
+- [Moshi](https://github.com/square/moshi) - for JSON parsing
 - [Timber](https://github.com/JakeWharton/timber) - logging
 - [Room](https://developer.android.com/topic/libraries/architecture/room) - data caching and offline data (coded but not implemented yet)
