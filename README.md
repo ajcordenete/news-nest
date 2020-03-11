@@ -26,7 +26,7 @@ Another goal of the project is to demonstrate best practices, provide a set of g
 - [Timber](https://github.com/JakeWharton/timber) - logging
 - [Room](https://developer.android.com/topic/libraries/architecture/room) - data caching and offline data (coded but not implemented yet)
 
-## Liscense
+## License
 
 <pre>
 Copyright 2020 Aljon Cordenete
