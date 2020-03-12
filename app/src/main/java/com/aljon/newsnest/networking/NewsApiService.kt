@@ -17,5 +17,6 @@ interface NewsApiService {
     @GET("everything")
     suspend fun searchNews(@Query("q", encoded = true) keyword: String,
                            @Query("sortBy") sortBy: String = Constants.PUBLISHED_AT,
+                           @Query("language") language: String = Constants.LANGUAGE,
                            @Query("apiKey") key: String = Constants.API_KEY) : Response<NewsResponse>
 }
