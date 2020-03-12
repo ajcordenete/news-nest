@@ -43,7 +43,6 @@ class SearchFragment : Fragment() {
 
         initAdapter()
         observeRequestStatus()
-        observeNavigateToArticleDetail()
     }
 
     /**
@@ -52,7 +51,7 @@ class SearchFragment : Fragment() {
      */
     private fun initAdapter() {
         var adapter = NewsAdapter(NewsAdapter.OnItemSelectListener {
-            viewModel.navigateToNewsDetail(it)
+            this.findNavController().navigate(SearchFragmentDirections.actionSearchFragmentToArticleDetailFragment(it))
         })
 
         news_list.adapter = adapter
@@ -63,15 +62,6 @@ class SearchFragment : Fragment() {
             when(it) {
                 ApiStatus.DONE ->   {}
                 ApiStatus.FAILED -> {}
-            }
-        })
-    }
-
-    private fun observeNavigateToArticleDetail() {
-        viewModel.navigateToArticleDetail.observe(viewLifecycleOwner, Observer {
-            it?.let {
-                this.findNavController().navigate(SearchFragmentDirections.actionSearchFragmentToArticleDetailFragment(it))
-                viewModel.doneNavigatingToNewsDetail()
             }
         })
     }

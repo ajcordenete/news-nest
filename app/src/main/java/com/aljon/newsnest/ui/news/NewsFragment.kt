@@ -52,7 +52,6 @@ class NewsFragment: Fragment() {
 
         initAdapter()
         initSwipeRefresh()
-        observeNavigateToArticleDetail()
         observeRequestStatus()
     }
 
@@ -62,7 +61,7 @@ class NewsFragment: Fragment() {
      */
     private fun initAdapter() {
         var adapter = NewsAdapter(NewsAdapter.OnItemSelectListener {
-            viewModel.navigateToNewsDetail(it)
+            this.findNavController().navigate(MainContainerFragmentDirections.actionMainContainerFragmentToArticleDetailFragment(it))
         })
 
         news_list.adapter = adapter
@@ -85,15 +84,6 @@ class NewsFragment: Fragment() {
     private fun showSnackBar(message: Int) {
         Snackbar.make(view!!,
             context!!.resources.getString(message), Snackbar.LENGTH_SHORT).show()
-    }
-
-    private fun observeNavigateToArticleDetail() {
-        viewModel.navigateToArticleDetail.observe(viewLifecycleOwner, Observer {
-            it?.let {
-                this.findNavController().navigate(MainContainerFragmentDirections.actionMainContainerFragmentToArticleDetailFragment(it))
-                viewModel.doneNavigatingToNewsDetail()
-            }
-        })
     }
 
     private fun initSwipeRefresh() {

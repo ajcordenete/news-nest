@@ -32,9 +32,6 @@ class NewsViewModel(val category: String): ViewModel() {
     private val _articles = MutableLiveData<List<Article>>()
     val articles: LiveData<List<Article>> get() = _articles
 
-    private val _navigateToArticleDetail = MutableLiveData<String>()
-    val navigateToArticleDetail: LiveData<String> get() = _navigateToArticleDetail
-
     var query: String = ""
 
     init {
@@ -81,14 +78,6 @@ class NewsViewModel(val category: String): ViewModel() {
                 _apiStatus.value = ApiStatus.FAILED
             }
         }
-    }
-
-    fun navigateToNewsDetail(url: String) {
-        _navigateToArticleDetail.value = url
-    }
-
-    fun doneNavigatingToNewsDetail() {
-        _navigateToArticleDetail.value = null
     }
 
     override fun onCleared() {
